@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="titleBaseLine">44dp</dimen>
+    <dimen name="addressBaseLine">32dp</dimen>
+    <dimen name="textBaseLine">26dp</dimen>
+    <dimen name="basePadding">5dp</dimen>
+    <dimen name="cardTitleTextSize">24sp</dimen>
+    <dimen name="cardDescriptionTextSize">14sp</dimen>
+    <dimen name="cardPhoneNumberTextSize">12sp</dimen>
+    <dimen name="descriptionTextSize">20sp</dimen>
+    <dimen name="imageCoverHeight">85dp</dimen>
+    <dimen name="itemHeight">250dp</dimen>
+    <dimen name="descriptionTextPadding">15dp</dimen>
+</resources>

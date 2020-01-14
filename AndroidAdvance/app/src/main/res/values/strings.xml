@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">Android Advance</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="exampleDescription">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer ut tellus imperdiet, tempor ipsum eget, imperdiet metus. Morbi aliquam mauris id magna feugiat viverra.</string>
+    <string name="searchButton">SEARCH</string>
+    <string name="openCameraButton">CAMERA</string>
+    <string name="firstTab">COFFEE</string>
+    <string name="secondTab">GALLERY</string>
+    <string name="thirdTab">HERO</string>
+    <string name="fourthTab">TAB</string>
+    <string name="phoneNumber">012 345 678</string>
+    <string name="address">Address</string>
+    <string name="onDeniedPermission">Need permission</string>
+</resources>
