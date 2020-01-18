@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">AndroidAdvance2</string>
+    <string name="recentTitle">Recent activity</string>
+    <string name="recentSubtitle">Recently played or added</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+</resources>

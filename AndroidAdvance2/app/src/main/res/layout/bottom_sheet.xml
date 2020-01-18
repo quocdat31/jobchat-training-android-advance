@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout
+    android:elevation="10dp"
+    app:behavior_peekHeight="?android:attr/actionBarSize"
+    app:behavior_hideable="true"
+    app:layout_behavior="@string/bottom_sheet_behavior"
+    android:id="@+id/bottomSheet"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:clickable="true"
+    android:focusable="true"
+    tools:context=".BottomSheet"
+    android:orientation="vertical"
+    xmlns:tools="http://schemas.android.com/tools">
+
+<LinearLayout
+    android:background="@color/colorWhite"
+    android:elevation="@dimen/cardview_default_elevation"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:paddingVertical="8dp"
+    android:paddingHorizontal="16dp"
+    android:layout_height="?android:attr/actionBarSize"
+    android:clickable="true"
+    android:focusable="true"
+    android:orientation="horizontal">
+
+    <ImageView
+        android:padding="8dp"
+        android:background="@drawable/circle_shape"
+        android:layout_marginRight="16dp"
+        android:src="@drawable/ic_music_note_black_24dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+    <LinearLayout
+        android:layout_weight="1"
+        android:layout_gravity="center"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/songTitleBottomSheetTextView"
+            android:textStyle="bold"
+            android:text="title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+        <TextView
+            android:id="@+id/songArtistBottomSheetTextView"
+            android:text="artist"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/playPauseMediaButton2"
+        style="?android:attr/actionButtonStyle"
+        android:tint="@color/colorGray"
+        android:layout_gravity="center"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_play_arrow_black_24dp" />
+
+</LinearLayout>
+
+    <ImageView
+        android:layout_weight="1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:src="@color/colorPrimary" />
+
+    <androidx.appcompat.widget.AppCompatSeekBar
+        style="?android:attr/seekBarStyle"
+        android:id="@+id/seekBar"
+        android:background="@color/colorWhite"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    <LinearLayout
+        android:paddingHorizontal="8dp"
+        android:background="@color/colorWhite"
+        android:gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="?android:attr/actionBarSize">
+
+        <TextView
+            android:text="00:00"
+            android:layout_weight="1"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"/>
+
+        <ImageView
+            android:id="@+id/playPauseMediaButton"
+            android:tint="@color/colorWhite"
+            android:padding="8dp"
+            android:layout_gravity="center"
+            android:src="@drawable/ic_play_arrow_black_24dp"
+            android:background="@drawable/circle_shape"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+        <TextView
+            android:id="@+id/currentTimeTextView"
+            android:gravity="end|top"
+            android:layout_weight="1"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="00:00" />
+
+    </LinearLayout>
+
+</LinearLayout>
