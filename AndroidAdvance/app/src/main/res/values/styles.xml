@@ -1,0 +1,50 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.MaterialComponents.Light.DarkActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>
+
+    <style name="textButton">
+        <item name="android:textSize">14sp</item>
+        <item name="android:padding">8dp</item>
+        <item name="android:layout_marginStart">8dp</item>
+        <item name="android:layout_marginBottom">16dp</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="cardText">
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_width">wrap_content</item>
+
+        <item name="android:fontFamily">@font/roboto</item>
+    </style>
+
+    <style name="cardText.Title">
+        <item name="android:text">Milano</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textSize">@dimen/cardTitleTextSize</item>
+    </style>
+
+    <style name="cardText.PhoneNumber">
+        <item name="android:text">@string/phoneNumber</item>
+        <item name="android:textSize">12sp</item>
+    </style>
+
+    <style name="cardText.Address">
+        <item name="android:text">@string/address</item>
+        <item name="android:textSize">@dimen/cardDescriptionTextSize</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:fontFamily">@font/roboto</item>
+    </style>
+
+    <style name="cardText.DescriptionText">
+        <item name="android:textSize">@dimen/cardDescriptionTextSize</item>
+        <item name="android:text">@string/exampleDescription</item>
+    </style>
+
+</resources>
+
