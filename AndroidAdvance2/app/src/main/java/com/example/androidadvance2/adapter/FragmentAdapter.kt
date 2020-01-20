@@ -13,7 +13,7 @@ class FragmentAdapter(var context: Context, var fragmentManager: FragmentManager
     override fun getItem(position: Int): Fragment {
         return when (position) {
             0 -> {
-                PlaylistsFragment()
+                SongsFragment()
             }
             1 -> {
                 ArtistsFragment()
@@ -22,7 +22,7 @@ class FragmentAdapter(var context: Context, var fragmentManager: FragmentManager
                 AlbumsFragment()
             }
             else -> {
-                SongsFragment()
+                PlaylistsFragment()
             }
         }
 

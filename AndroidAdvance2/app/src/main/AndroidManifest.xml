@@ -3,7 +3,9 @@
     package="com.example.androidadvance2">
 
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-    
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+
+
     <application
         android:name=".App"
         android:allowBackup="true"
@@ -13,6 +15,14 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <service android:name=".MyMediaPlayer"/>
+
+<!--        <service android:name=".MediaPlaybackService">-->
+<!--            <intent-filter>-->
+<!--                <action android:name="android.media.browse.MediaBrowserService" />-->
+<!--            </intent-filter>-->
+<!--        </service>-->
+
+
         <receiver
             android:name=".MyBroadcastReceiver"
             android:exported="true">
@@ -31,6 +41,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <service android:name=".MyMediaPlayer" />
+        <service android:name=".MyNotification" />
+
     </application>
 
 </manifest>

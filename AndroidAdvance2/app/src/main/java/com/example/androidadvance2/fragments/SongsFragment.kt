@@ -1,26 +1,21 @@
 package com.example.androidadvance2.fragments
 
 import android.Manifest
+import android.annotation.TargetApi
 import android.content.Context
 import android.content.Intent
-import android.content.pm.PackageManager
-import android.media.AudioManager
 import android.media.MediaPlayer
 import android.net.Uri
 import android.os.Build
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import androidx.annotation.RequiresApi
-import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
-import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.androidadvance2.*
 import com.example.androidadvance2.adapter.OnItemClickListener
-import com.example.androidadvance2.adapter.SongsAdapter
 import com.example.androidadvance2.model.Songs
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import kotlinx.android.synthetic.main.bottom_sheet.*
@@ -36,6 +31,8 @@ class SongsFragment : Fragment(), OnItemClickListener {
     private var param1: String? = null
     private var param2: String? = null
     private var listener: OnFragmentInteractionListener? = null
+    private lateinit var myMediaPlayer: MyMediaPlayer
+    lateinit var mSongs: Songs
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -59,20 +56,21 @@ class SongsFragment : Fragment(), OnItemClickListener {
 
         var context = activity!!.applicationContext
 
-        if (mCheckPermission(context, Manifest.permission.READ_EXTERNAL_STORAGE)) {
+        if (mCheckPermission(context, Manifest.permission.READ_EXTERNAL_STORAGE) ||
+                mCheckPermission(context, Manifest.permission.FOREGROUND_SERVICE)) {
 
             GetSongList(loadingSongsProgressBar, context, musicRecyclerView, this).execute()
 
         }
         else {
-            mRequestPermission(activity!!, arrayOf(Manifest.permission.READ_EXTERNAL_STORAGE), REQUEST_CODE)
+            mRequestPermission(activity!!, arrayOf(Manifest.permission.READ_EXTERNAL_STORAGE,
+                Manifest.permission.FOREGROUND_SERVICE), REQUEST_CODE)
         }
 
         playPauseMediaButton.setOnClickListener {
             isPlaying  = !isPlaying
             setImageSrc(playPauseMediaButton)
             setImageSrc(playPauseMediaButton2)
-
         }
 
         playPauseMediaButton2.setOnClickListener {
@@ -117,9 +115,11 @@ class SongsFragment : Fragment(), OnItemClickListener {
             }
     }
 
+    @TargetApi(Build.VERSION_CODES.O)
     @RequiresApi(Build.VERSION_CODES.N)
     override fun onItemClick(songs: Songs) {
 
+        mSongs = songs
         isPlaying = true
 
         setImageSrc(playPauseMediaButton)
@@ -127,9 +127,13 @@ class SongsFragment : Fragment(), OnItemClickListener {
 
         showUpBottomSheet(songs, bottomSheet)
 
-        var mediaPlayer = activity?.applicationContext?.let { MyMediaPlayer(MediaPlayer(), it, songs.uri, seekBar, playPauseMediaButton2) }
+        val serviceIntent = Intent(context, MyMediaPlayer::class.java)
+        serviceIntent.action = "PLAY"
+        serviceIntent.putExtra("SONG", songs)
+        context?.startService(serviceIntent)
 
-        mediaPlayer?.play(currentTimeTextView)
+        myMediaPlayer = MyMediaPlayer()
+        context?.let { myMediaPlayer.play(seekBar, songs, currentTimeTextView, it) }
 
     }
 
@@ -166,4 +170,5 @@ class SongsFragment : Fragment(), OnItemClickListener {
         setImageSrc(playPauseMediaButton)
         setImageSrc(playPauseMediaButton2)
     }
+
 }

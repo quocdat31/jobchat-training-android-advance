@@ -3,29 +3,24 @@ package com.example.androidadvance2
 import android.app.*
 import android.content.Context
 import android.content.Intent
-import android.graphics.Color
 import android.media.AudioManager
 import android.media.MediaPlayer
-import android.net.Uri
-import android.os.Build
 import android.os.Handler
 import android.os.IBinder
 import android.util.Log
-import android.widget.ImageView
 import android.widget.SeekBar
 import android.widget.TextView
-import androidx.annotation.RequiresApi
-import androidx.media.app.NotificationCompat
-import com.example.androidadvance2.App.Companion.CHANNEL_ID
+import com.example.androidadvance2.model.Songs
 
 
-class MyMediaPlayer(var mediaPlayer: MediaPlayer?,
-                    var context: Context,
-                    var uri: Uri,
-                    var seekBar: SeekBar,
-                    var imageView: ImageView):
+class MyMediaPlayer :
     Service(),
     MediaPlayer.OnCompletionListener {
+
+    lateinit var mediaPlayer: MediaPlayer
+    lateinit var songs: Songs
+    var seekBar: SeekBar? = null
+    var textView: TextView? = null
 
     override fun onCreate() {
         super.onCreate()
@@ -41,14 +36,12 @@ class MyMediaPlayer(var mediaPlayer: MediaPlayer?,
 
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
 
-        var inputExtra = intent?.getStringExtra("inputExtra")
+        if (intent == null) return START_STICKY
 
-        if (inputExtra != null) {
-            startMyForeground(inputExtra)
-        }
+        var songs = intent.getParcelableExtra<Songs>("SONG")
+        var myNotification = baseContext?.let { MyNotification(it, songs.title, songs.artist) }
 
-        mediaPlayer?.isLooping = true
-        mediaPlayer?.start()
+        startForeground(1, myNotification?.getNotification())
         return START_STICKY
 
     }
@@ -58,73 +51,38 @@ class MyMediaPlayer(var mediaPlayer: MediaPlayer?,
         mediaPlayer?.stop()
     }
 
-
-    @RequiresApi(Build.VERSION_CODES.N)
-    fun play(textView: TextView) {
-
-            var myThread = MyThread(mediaPlayer, seekBar)
-            var handler = Handler()
-            var runnable = Runnable {
-                mediaPlayer?.apply {
-                    setAudioStreamType(AudioManager.STREAM_MUSIC)
-                    setDataSource(context, uri)
-                    prepare() // might take long! (for buffering, etc)
-                    start()
-                    seekBar.progress = currentPosition
-                    seekBar.max = duration
-                    textView.text = timeFormat(duration)
+    fun play(seekBar: SeekBar, songs: Songs, textView: TextView, context: Context) {
+        var mediaPlayer = MediaPlayer()
+        var myThread = seekBar?.let { MyThread(mediaPlayer, it) }
+        var handler = Handler()
+        var runnable = Runnable {
+            mediaPlayer?.apply {
+                setAudioStreamType(AudioManager.STREAM_MUSIC)
+                setDataSource(context, songs.uri)
+                prepare()
+                start()
+                seekBar?.apply {
+                    progress = currentPosition
+                    max = duration
                 }
+                textView?.text = timeFormat(duration)
+                Log.d("asd:", "$duration")
             }
-
-            imageView.setImageResource(R.drawable.ic_pause_black_24dp)
-            handler.postDelayed(runnable,1000)
-            myThread.start()
-
-    }
-
-    private fun startMyForeground(inputExtra: String) {
-
-        val channelName = "My Background Service"
-        val chan = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            NotificationChannel(
-                CHANNEL_ID,
-                channelName,
-                NotificationManager.IMPORTANCE_NONE
-            )
-        } else {
-            TODO("VERSION.SDK_INT < O")
         }
-        chan.lightColor = Color.BLUE
-        chan.lockscreenVisibility = Notification.VISIBILITY_PRIVATE
-        val manager =
-            (getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager)
-        manager.createNotificationChannel(chan)
 
-        val notificationBuilder =
-            androidx.core.app.NotificationCompat.Builder(this, CHANNEL_ID)
-        val notification = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-            notificationBuilder.setOngoing(true)
-                .setSmallIcon(android.R.drawable.ic_media_play)
-                .setContentTitle(inputExtra)
-                .setPriority(NotificationManager.IMPORTANCE_MIN)
-                .setCategory(Notification.CATEGORY_SERVICE)
-                .build()
-        } else {
-            TODO("VERSION.SDK_INT < N")
-        }
-        startForeground(2, notification)
+        //imageView?.setImageResource(R.drawable.ic_pause_black_24dp)
+        handler.postDelayed(runnable, 1000)
+        myThread?.start()
+
     }
 
     fun pause() {
-        if (mediaPlayer != null)
-            mediaPlayer?.pause()
+        mediaPlayer = MediaPlayer()
+        mediaPlayer?.pause()
     }
 
     fun stop() {
-        if (mediaPlayer != null) {
-            mediaPlayer?.release()
-            mediaPlayer = null
-        }
+        mediaPlayer?.release()
     }
 
     fun seekTo(msec: Int) {
@@ -134,6 +92,7 @@ class MyMediaPlayer(var mediaPlayer: MediaPlayer?,
     fun getDuration(): Int? {
         return mediaPlayer?.duration
     }
+
 
 }
 
@@ -146,6 +105,7 @@ class MyThread(var mediaPlayer: MediaPlayer?, var seekBar: SeekBar) : Thread() {
                 e.printStackTrace()
             }
             if (mediaPlayer != null) {
+                seekBar.progress = mediaPlayer?.currentPosition?.div(1000) ?: 0
                 seekBar.post(Runnable { seekBar.progress = mediaPlayer!!.currentPosition })
             }
         }
