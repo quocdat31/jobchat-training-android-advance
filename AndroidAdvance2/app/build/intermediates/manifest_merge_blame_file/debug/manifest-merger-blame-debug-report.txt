@@ -1,0 +1,99 @@
+1<?xml version="1.0" encoding="utf-8"?>
+2<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+3    package="com.example.androidadvance2"
+4    android:versionCode="1"
+5    android:versionName="1.0" >
+6
+7    <uses-sdk
+8        android:minSdkVersion="19"
+8-->C:\AndroidProjects\jobchat-training-android-advance\AndroidAdvance2\app\src\main\AndroidManifest.xml
+9        android:targetSdkVersion="29" />
+9-->C:\AndroidProjects\jobchat-training-android-advance\AndroidAdvance2\app\src\main\AndroidManifest.xml
+10
+11    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+11-->C:\AndroidProjects\jobchat-training-android-advance\AndroidAdvance2\app\src\main\AndroidManifest.xml:5:5-80
+11-->C:\AndroidProjects\jobchat-training-android-advance\AndroidAdvance2\app\src\main\AndroidManifest.xml:5:22-77
+12    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+12-->C:\AndroidProjects\jobchat-training-android-advance\AndroidAdvance2\app\src\main\AndroidManifest.xml:6:5-77
+12-->C:\AndroidProjects\jobchat-training-android-advance\AndroidAdvance2\app\src\main\AndroidManifest.xml:6:22-74
+13
+14    <application
+14-->C:\AndroidProjects\jobchat-training-android-advance\AndroidAdvance2\app\src\main\AndroidManifest.xml:9:5-48:19
+15        android:name="com.example.androidadvance2.App"
+15-->C:\AndroidProjects\jobchat-training-android-advance\AndroidAdvance2\app\src\main\AndroidManifest.xml:10:9-28
+16        android:allowBackup="true"
+16-->C:\AndroidProjects\jobchat-training-android-advance\AndroidAdvance2\app\src\main\AndroidManifest.xml:11:9-35
+17        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
+17-->[androidx.core:core:1.1.0] C:\Users\Admin\.gradle\caches\transforms-2\files-2.1\df2ac4fe6b88cbdd1c862077d2fdf1ec\core-1.1.0\AndroidManifest.xml:24:18-86
+18        android:debuggable="true"
+19        android:icon="@mipmap/ic_launcher"
+19-->C:\AndroidProjects\jobchat-training-android-advance\AndroidAdvance2\app\src\main\AndroidManifest.xml:12:9-43
+20        android:label="@string/app_name"
+20-->C:\AndroidProjects\jobchat-training-android-advance\AndroidAdvance2\app\src\main\AndroidManifest.xml:13:9-41
+21        android:roundIcon="@mipmap/ic_launcher_round"
+21-->C:\AndroidProjects\jobchat-training-android-advance\AndroidAdvance2\app\src\main\AndroidManifest.xml:14:9-54
+22        android:supportsRtl="true"
+22-->C:\AndroidProjects\jobchat-training-android-advance\AndroidAdvance2\app\src\main\AndroidManifest.xml:15:9-35
+23        android:testOnly="true"
+24        android:theme="@style/AppTheme" >
+24-->C:\AndroidProjects\jobchat-training-android-advance\AndroidAdvance2\app\src\main\AndroidManifest.xml:16:9-40
+25        <service android:name="com.example.androidadvance2.MyMediaPlayer" />
+25-->C:\AndroidProjects\jobchat-training-android-advance\AndroidAdvance2\app\src\main\AndroidManifest.xml:17:9-49
+25-->C:\AndroidProjects\jobchat-training-android-advance\AndroidAdvance2\app\src\main\AndroidManifest.xml:17:18-47
+26
+27        <!-- <service android:name=".MediaPlaybackService"> -->
+28        <!-- <intent-filter> -->
+29        <!-- <action android:name="android.media.browse.MediaBrowserService" /> -->
+30        <!-- </intent-filter> -->
+31        <!-- </service> -->
+32
+33        <receiver
+33-->C:\AndroidProjects\jobchat-training-android-advance\AndroidAdvance2\app\src\main\AndroidManifest.xml:26:9-34:20
+34            android:name="com.example.androidadvance2.MyBroadcastReceiver"
+34-->C:\AndroidProjects\jobchat-training-android-advance\AndroidAdvance2\app\src\main\AndroidManifest.xml:27:13-48
+35            android:exported="true" >
+35-->C:\AndroidProjects\jobchat-training-android-advance\AndroidAdvance2\app\src\main\AndroidManifest.xml:28:13-36
+36            <intent-filter>
+36-->C:\AndroidProjects\jobchat-training-android-advance\AndroidAdvance2\app\src\main\AndroidManifest.xml:29:13-33:29
+37                <action android:name="android.intent.action.BOOT_COMPLETED" />
+37-->C:\AndroidProjects\jobchat-training-android-advance\AndroidAdvance2\app\src\main\AndroidManifest.xml:30:17-79
+37-->C:\AndroidProjects\jobchat-training-android-advance\AndroidAdvance2\app\src\main\AndroidManifest.xml:30:25-76
+38                <action android:name="android.intent.action.BATTERY_LOW" />
+38-->C:\AndroidProjects\jobchat-training-android-advance\AndroidAdvance2\app\src\main\AndroidManifest.xml:31:17-76
+38-->C:\AndroidProjects\jobchat-training-android-advance\AndroidAdvance2\app\src\main\AndroidManifest.xml:31:25-73
+39                <action android:name="android.intent.action.INPUT_METHOD_CHANGED" />
+39-->C:\AndroidProjects\jobchat-training-android-advance\AndroidAdvance2\app\src\main\AndroidManifest.xml:32:17-85
+39-->C:\AndroidProjects\jobchat-training-android-advance\AndroidAdvance2\app\src\main\AndroidManifest.xml:32:25-82
+40            </intent-filter>
+41        </receiver>
+42
+43        <activity android:name="com.example.androidadvance2.BottomSheet" />
+43-->C:\AndroidProjects\jobchat-training-android-advance\AndroidAdvance2\app\src\main\AndroidManifest.xml:35:9-58
+43-->C:\AndroidProjects\jobchat-training-android-advance\AndroidAdvance2\app\src\main\AndroidManifest.xml:35:19-46
+44        <activity android:name="com.example.androidadvance2.MainActivity" />
+44-->C:\AndroidProjects\jobchat-training-android-advance\AndroidAdvance2\app\src\main\AndroidManifest.xml:36:9-50
+44-->C:\AndroidProjects\jobchat-training-android-advance\AndroidAdvance2\app\src\main\AndroidManifest.xml:36:19-47
+45        <activity android:name="com.example.androidadvance2.SplashActivity" >
+45-->C:\AndroidProjects\jobchat-training-android-advance\AndroidAdvance2\app\src\main\AndroidManifest.xml:37:9-43:20
+45-->C:\AndroidProjects\jobchat-training-android-advance\AndroidAdvance2\app\src\main\AndroidManifest.xml:37:19-49
+46            <intent-filter>
+46-->C:\AndroidProjects\jobchat-training-android-advance\AndroidAdvance2\app\src\main\AndroidManifest.xml:38:13-42:29
+47                <action android:name="android.intent.action.MAIN" />
+47-->C:\AndroidProjects\jobchat-training-android-advance\AndroidAdvance2\app\src\main\AndroidManifest.xml:39:17-69
+47-->C:\AndroidProjects\jobchat-training-android-advance\AndroidAdvance2\app\src\main\AndroidManifest.xml:39:25-66
+48
+49                <category android:name="android.intent.category.LAUNCHER" />
+49-->C:\AndroidProjects\jobchat-training-android-advance\AndroidAdvance2\app\src\main\AndroidManifest.xml:41:17-77
+49-->C:\AndroidProjects\jobchat-training-android-advance\AndroidAdvance2\app\src\main\AndroidManifest.xml:41:27-74
+50            </intent-filter>
+51        </activity>
+52
+53        <service android:name="com.example.androidadvance2.MyMediaPlayer" />
+53-->C:\AndroidProjects\jobchat-training-android-advance\AndroidAdvance2\app\src\main\AndroidManifest.xml:17:9-49
+53-->C:\AndroidProjects\jobchat-training-android-advance\AndroidAdvance2\app\src\main\AndroidManifest.xml:17:18-47
+54        <service android:name="com.example.androidadvance2.MusicNotification" />
+54-->C:\AndroidProjects\jobchat-training-android-advance\AndroidAdvance2\app\src\main\AndroidManifest.xml:46:9-54
+54-->C:\AndroidProjects\jobchat-training-android-advance\AndroidAdvance2\app\src\main\AndroidManifest.xml:46:18-51
+55    </application>
+56
+57</manifest>
