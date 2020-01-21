@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+    android:animateLayoutChanges="true"
+    style="?android:attr/borderlessButtonStyle"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="?android:attr/actionBarSize"
+    android:clickable="true"
+    android:focusable="true">
+
+    <LinearLayout
+        android:paddingVertical="8dp"
+        android:paddingHorizontal="16dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/contactImage"
+            android:tint="#ffffff"
+            android:padding="8dp"
+            android:background="@drawable/circle_shape"
+            android:layout_marginRight="16dp"
+            android:src="@drawable/ic_person_black_24dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+        <TextView
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:id="@+id/contactTextView"
+            android:text="Contact Name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+        <ImageView
+            android:tint="@android:color/darker_gray"
+            android:layout_gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_expand_more_black_24dp" />
+
+    </LinearLayout>
+
+
+
+</androidx.cardview.widget.CardView>

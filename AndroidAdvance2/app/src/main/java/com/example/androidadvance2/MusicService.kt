@@ -39,7 +39,7 @@ class MyMediaPlayer :
         if (intent == null) return START_STICKY
 
         var songs = intent.getParcelableExtra<Songs>("SONG")
-        var myNotification = baseContext?.let { MyNotification(it, songs.title, songs.artist) }
+        var myNotification = baseContext?.let { MusicNotification(it, songs.title, songs.artist) }
 
         startForeground(1, myNotification?.getNotification())
         return START_STICKY
@@ -52,10 +52,10 @@ class MyMediaPlayer :
     }
 
     fun play(seekBar: SeekBar, songs: Songs, textView: TextView, context: Context) {
-        var mediaPlayer = MediaPlayer()
-        var myThread = seekBar?.let { MyThread(mediaPlayer, it) }
-        var handler = Handler()
-        var runnable = Runnable {
+        val mediaPlayer = MediaPlayer()
+        val myThread = seekBar?.let { MyThread(mediaPlayer, it) }
+        val handler = Handler()
+        val runnable = Runnable {
             mediaPlayer?.apply {
                 setAudioStreamType(AudioManager.STREAM_MUSIC)
                 setDataSource(context, songs.uri)

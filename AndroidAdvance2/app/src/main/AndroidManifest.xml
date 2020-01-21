@@ -43,7 +43,7 @@
         </activity>
 
         <service android:name=".MyMediaPlayer" />
-        <service android:name=".MyNotification" />
+        <service android:name=".MusicNotification" />
 
     </application>
 

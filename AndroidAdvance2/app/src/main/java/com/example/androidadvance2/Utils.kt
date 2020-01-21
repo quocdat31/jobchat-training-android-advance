@@ -44,31 +44,36 @@ fun timeFormat(millis: Int): String? {
 
 
 
-class GetSongList(var progressBar: ProgressBar, var context: Context, var recyclerView: RecyclerView, var songsFragment: SongsFragment): AsyncTask<Void, Int, ArrayList<Songs>>(){
-    @RequiresApi(Build.VERSION_CODES.O)
+class GetSongList(
+    var progressBar: ProgressBar,
+    var context: Context,
+    var recyclerView: RecyclerView,
+    var songsFragment: SongsFragment)
+    : AsyncTask<Void, Int, ArrayList<Songs>>(){
 
+    @RequiresApi(Build.VERSION_CODES.O)
     override fun doInBackground(vararg params: Void?): ArrayList<Songs> {
 
-        var songsList: ArrayList<Songs> = arrayListOf()
-        var ID = MediaStore.Audio.Media._ID
-        var TITLE = MediaStore.Audio.Media.TITLE
-        var ARTIST = MediaStore.Audio.Media.ARTIST
-        var uri = MediaStore.Audio.Media.INTERNAL_CONTENT_URI
-        var column = arrayOf(ID, TITLE, ARTIST)
-        var cursor = context.contentResolver.query(uri,column,null,null)
+        val songsList: ArrayList<Songs> = arrayListOf()
+        val ID = MediaStore.Audio.Media._ID
+        val TITLE = MediaStore.Audio.Media.TITLE
+        val ARTIST = MediaStore.Audio.Media.ARTIST
+        val uri = MediaStore.Audio.Media.INTERNAL_CONTENT_URI
+        val column = arrayOf(ID, TITLE, ARTIST)
+        val cursor = context.contentResolver.query(uri,column,null,null)
 
         if (cursor != null) {
 
-            var columnID = cursor.getColumnIndexOrThrow(ID)
-            var columnName = cursor.getColumnIndexOrThrow(TITLE)
-            var columnArtist = cursor.getColumnIndexOrThrow(ARTIST)
+            val columnID = cursor.getColumnIndexOrThrow(ID)
+            val columnName = cursor.getColumnIndexOrThrow(TITLE)
+            val columnArtist = cursor.getColumnIndexOrThrow(ARTIST)
 
             while (cursor.moveToNext()) {
 
-                var artist = cursor.getString(columnArtist)
-                var title = cursor.getString(columnName)
-                var id = cursor.getLong(columnID)
-                var uri = Uri.withAppendedPath(uri, ""+id)
+                val artist = cursor.getString(columnArtist)
+                val title = cursor.getString(columnName)
+                val id = cursor.getLong(columnID)
+                val uri = Uri.withAppendedPath(uri, ""+id)
                 Log.d("asd","$uri")
 
                 songsList.add(Songs(title, artist, uri))

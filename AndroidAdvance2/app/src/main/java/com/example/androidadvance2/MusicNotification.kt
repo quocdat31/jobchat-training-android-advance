@@ -15,7 +15,7 @@ import androidx.core.app.NotificationCompat
 import androidx.core.content.ContextCompat
 import androidx.media.session.MediaButtonReceiver
 
-class MyNotification(
+class MusicNotification(
     var context: Context,
     var title: String,
     var artist: String
@@ -73,7 +73,6 @@ class MyNotification(
             )
         )
 
-        // Take advantage of MediaStyle features
         setStyle(
             androidx.media.app.NotificationCompat.MediaStyle()
                 .setMediaSession(setupMediaSession().sessionToken)
